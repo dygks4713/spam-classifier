@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spam Email Classification Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+  <h3>보낸 이메일 내용</h3>
+  <div>{{ content }}</div>
+
+  <h3>예측:</h3>
+  <div>
+    보낸 이메일은 다음과 같이 분류됩니다. <strong>{{ prediction }}</strong>
+    (정확도: {{ probability }}%).
+  </div>
+
+  <div id='button'>
+    <form action="/thanks" method="post">
+      <input type=submit value='맞다' name='feedback_button'>
+      <input type=submit value='아니다' name='feedback_button'>
+      <input type=hidden value='{{ prediction }}' name='prediction'>
+      <input type=hidden value='{{ content }}' name='emailcontent'>
+    </form>
+  </div>
+  <div id='button'>
+      <form action="/">
+        <input type="submit" value="다른 이메일 내용 보내기">
+      </form>
+  </div>
+    
+</body>
+</html>
